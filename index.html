@@ -515,15 +515,20 @@
 
     <script src="https://api.mapbox.com/mapbox-gl-js/v2.9.1/mapbox-gl.js"></script>
 
-    <script>
-      mapboxgl.accessToken =
-        'pk.eyJ1IjoicmVuZXNhbG9tb25lIiwiYSI6ImNtNXZiZTY4dzAwM2cya3E2M3d2aHllOHYifQ.4OGIE0D055H6AfB4OMAaUw';
-      var map = new mapboxgl.Map({
-        container: 'map',
-        style: 'mapbox://styles/mapbox/streets-v11',
-        center: [-71.060982, 42.35725],
-        zoom: 18,
-      });
+    <script type="module">
+      const mapboxToken = import.meta.env.VITE_MAPBOX_ACCESS_TOKEN;
+      console.log(mapboxToken);
+
+      if (mapboxToken) {
+        mapboxgl.accessToken = mapboxToken;
+
+        const map = new mapboxgl.Map({
+          container: 'map',
+          style: 'mapbox://styles/mapbox/streets-v11',
+          center: [-71.060982, 42.35725],
+          zoom: 18,
+        });
+      }
     </script>
   </body>
 </html>
